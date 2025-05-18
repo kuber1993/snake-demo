@@ -1,45 +1,41 @@
-peline{
-  agent any 
-  stages {
-        stage ('Cloning Git') {
-			steps
-                          {
-			  /* let's make sure we have the repository cloned to our workspace */
-                         checkout scm
-		    }
-		}
-		stage ('SAST') {
-		    steps{
-		      sh 'echo SAST stage'
-			 }
-		}
-        stage ('build-and-tag') {
-              steps{
-		sh 'echo build and tag'
-			
-	    }
-	}
-        stage ('post-to-dockerhub') {
-              steps{
-		sh 'echo post to dockerhub repo'
-
-	   }
-      }
-
-       stage ('security-image-scanner') {
-              steps{
-		sh 'echo scan image security'
-
-           }
-      }
-       stage ('pull-image-server') {
-              steps{
-		sh 'echo pulling image ...'
-           }
-      }
-       stage ('DAST') {
-              steps{
-		sh 'echo DAST scan for security'
+pipeline {
+    agent any 
+    stages {
+        stage('Cloning Git') {
+            steps {
+                checkout scm
+            }
         }
-     }
- }
+        stage('SAST') {
+            steps {
+                sh 'echo SAST stage'
+            }
+        }
+        stage('build-and-tag') {
+            steps {
+                sh 'echo build and tag'
+            }
+        }
+        stage('post-to-dockerhub') {
+            steps {
+                sh 'echo post to dockerhub repo'
+            }
+        }
+        stage('security-image-scanner') {
+            steps {
+                sh 'echo scan image security'
+            }
+        }
+        stage('pull-image-server') {
+            steps {
+                sh 'echo pulling image ...'
+            }
+        }
+        stage('DAST') {
+            steps {
+                sh 'echo DAST scan for security'
+            }
+        }
+    }
+}
+
